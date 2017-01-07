@@ -71,7 +71,7 @@ public class PublisherController {
                 redirectAttributes.addFlashAttribute("message",
                         "You failed to publish " + name + " => " + e.getMessage());
             }
-        } else {
+        } else {            
             redirectAttributes.addFlashAttribute("message",
                     "You failed to upload " + name + " because the file was empty");
         }
