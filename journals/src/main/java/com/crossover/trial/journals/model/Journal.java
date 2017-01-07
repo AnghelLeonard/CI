@@ -59,6 +59,10 @@ public class Journal {
         return publishDate;
     }
 
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+
     public Publisher getPublisher() {
         return publisher;
     }

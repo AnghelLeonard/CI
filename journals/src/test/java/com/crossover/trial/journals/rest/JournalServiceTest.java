@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 import com.crossover.trial.journals.model.Journal;
+import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.repository.PublisherRepository;
 import com.crossover.trial.journals.service.JournalService;
+import com.crossover.trial.journals.service.ServiceException;
 import com.crossover.trial.journals.service.UserService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -49,14 +51,13 @@ public class JournalServiceTest {
         assertEquals(new Long(1), journals.get(0).getPublisher().getId());
         assertNotNull(journals.get(0).getPublishDate());
     }
-
-    /*
+    
     @Test
     public void browseUnSubscribedUser() {
         List<Journal> journals = journalService.listAll(getUser("user2"));
         assertEquals(0, journals.size());
     }
-
+    
     @Test
     public void listPublisher() {
         User user = getUser("publisher1");
@@ -74,8 +75,9 @@ public class JournalServiceTest {
 
     }
 
-    @Test(expected = org.springframework.orm.jpa.JpaSystemException.class)
-    public void publishFail() throws org.springframework.orm.jpa.JpaSystemException {
+    
+    @Test(expected = ServiceException.class)
+    public void publishFail() throws ServiceException {
         User user = getUser("publisher2");
         Optional<Publisher> p = publisherRepository.findByUser(user);
 
@@ -85,8 +87,8 @@ public class JournalServiceTest {
         journalService.publish(p.get(), journal, 1L);
     }
 
-    @Test(expected = org.springframework.orm.jpa.JpaSystemException.class)
-    public void publishFail2() throws org.springframework.orm.jpa.JpaSystemException {
+    @Test(expected = ServiceException.class)
+    public void publishFail2() throws ServiceException {
         User user = getUser("publisher2");
         Optional<Publisher> p = publisherRepository.findByUser(user);
 
@@ -116,7 +118,7 @@ public class JournalServiceTest {
         journals = journalService.publisherList(p.get());
         assertEquals(2, journals.size());
         assertEquals(new Long(3), journals.get(0).getId());
-        assertEquals(new Long(4), journals.get(1).getId());
+        assertEquals(new Long(5), journals.get(1).getId());
         assertEquals("Health", journals.get(0).getName());
         assertEquals(NEW_JOURNAL_NAME, journals.get(1).getName());
         journals.stream().forEach(j -> assertNotNull(j.getPublishDate()));
@@ -141,14 +143,14 @@ public class JournalServiceTest {
     public void unPublishSuccess() {
         User user = getUser("publisher2");
         Optional<Publisher> p = publisherRepository.findByUser(user);
-        journalService.unPublish(p.get(), 4L);
+        journalService.unPublish(p.get(), 5L);
 
         List<Journal> journals = journalService.publisherList(p.get());
         assertEquals(1, journals.size());
         journals = journalService.listAll(getUser("user1"));
         assertEquals(1, journals.size());
     }
-     */
+     
     protected User getUser(String name) {
         Optional<User> user = userService.getUserByLoginName(name);
         if (!user.isPresent()) {
