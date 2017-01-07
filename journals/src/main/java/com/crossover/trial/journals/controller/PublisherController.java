@@ -40,7 +40,7 @@ public class PublisherController {
     private JournalService journalService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/publisher/publish")
-    public String provideUploadInfo(Model model) {
+    public String provideUploadInfo(Model model) {       
         return "publisher/publish";
     }
 
