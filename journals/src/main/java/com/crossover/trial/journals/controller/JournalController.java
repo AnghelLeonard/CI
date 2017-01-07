@@ -42,8 +42,8 @@ public class JournalController {
             throws IOException {
         Journal journal = journalRepository.findOne(id);
         Category category = journal.getCategory();
-        CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
-        User user = userRepository.findOne(activeUser.getUser().getId());
+        //CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
+        User user = userRepository.findOne(1L);
         List<Subscription> subscriptions = user.getSubscriptions();
         Optional<Subscription> subscription = subscriptions.stream()
                 .filter(s -> s.getCategory().getId().equals(category.getId())).findFirst();

@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserByLoginName(String loginName) {
+    public Optional<User> getUserByLoginName(String loginName) {        
         return Optional.ofNullable(userRepository.findByLoginName(loginName));
     }
 

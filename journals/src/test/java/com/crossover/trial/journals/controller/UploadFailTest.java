@@ -2,6 +2,8 @@ package com.crossover.trial.journals.controller;
 
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.repository.UserRepository;
+import java.security.Principal;
+import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -14,7 +16,7 @@ import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.security.test.context.support.WithMockUser;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -41,6 +43,9 @@ public class UploadFailTest {
     private UserRepository userRepository;
 
     @Mock
+    private Principal principal;
+    
+    @Mock
     private User user;
 
     @Autowired
@@ -52,13 +57,15 @@ public class UploadFailTest {
     }
 
     @Test   
-    public void bTestDownload() throws Exception {
+    @WithMockUser(username="user1", password="user1", roles="USER")
+    public void bTestDownload() throws Exception {                
+               
+       // when(((Authentication) this.principal).getPrincipal()).thenReturn(null);
+       when(this.userRepository.findOne(anyLong())).thenReturn(user);
+       when(this.user.getSubscriptions()).thenReturn(new ArrayList<>());
 
-        when(this.userRepository.findOne(anyLong())).thenReturn(user);
-        when(this.user.getSubscriptions()).thenReturn(null);
+        MvcResult andReturn = this.mockMvc.perform(get("/view/1")).andExpect(status().is4xxClientError()).andReturn();
 
-        MvcResult andReturn = this.mockMvc.perform(get("/view/1")).andExpect(status().is3xxRedirection()).andReturn();
-
-        assertEquals(andReturn, andReturn);
+        assertEquals(0, andReturn.getResponse().getContentLength());
     }
 }
