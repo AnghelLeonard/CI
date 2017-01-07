@@ -28,7 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Anghel Leonard
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=Application.class)
+@SpringBootTest
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UploadDownloadFailTest {
