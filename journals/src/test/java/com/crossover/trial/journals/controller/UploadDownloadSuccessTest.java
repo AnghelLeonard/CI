@@ -30,7 +30,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class UploadSuccessTest {
+public class UploadDownloadSuccessTest {
 
     private MockMvc mockMvc;
 

@@ -28,7 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest(classes=Application.class)
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class UploadFailTest {
+public class UploadDownloadFailTest {
 
     private MockMvc mockMvc;   
     
