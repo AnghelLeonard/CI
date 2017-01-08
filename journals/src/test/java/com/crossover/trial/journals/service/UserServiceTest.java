@@ -24,7 +24,7 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
-    
+
     @Test
     public void findByIdTest() {
         User user = userService.findById(1L);
@@ -40,16 +40,22 @@ public class UserServiceTest {
         List<Subscription> subscribtions = user.getSubscriptions();
         assertEquals(2, subscribtions.size());
     }
-  
-    @Test 
-    public void nullSubscriptions(){     
+
+    @Test
+    public void nullSubscriptions() {
         User user = getUser("user1");
         user.setSubscriptions(null);
         userService.subscribe(user, 1L);
 
         List<Subscription> subscribtions = user.getSubscriptions();
-        
+
         // we force this to pass the test, but there is a bug here :(
         assertNull(subscribtions);
+    }
+
+    @Test(expected = ServiceException.class)
+    public void nullCategory() {
+        User user = getUser("user1");        
+        userService.subscribe(user, 999L);        
     }
 }
