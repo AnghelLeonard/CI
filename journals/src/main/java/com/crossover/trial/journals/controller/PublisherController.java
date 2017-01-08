@@ -68,6 +68,12 @@ public class PublisherController {
                 journalService.publish(publisher.get(), journal, categoryId);
                 return "redirect:/publisher/browse";
             } catch (Exception e) {
+                System.out.println("qqqqqqqqqqqqqqqqqqqqqq");
+                System.out.println("qqqqqqqqqqqqqqqqqqqqqq");
+                System.out.println("qqqqqqqqqqqqqqqqqqqqqq");
+                System.out.println("qqqqqqqqqqqqqqqqqqqqqq");
+                System.out.println("qqqqqqqqqqqqqqqqqqqqqq");
+                System.out.println("qqqqqqqqqqqqqqqqqqqqqq");
                 redirectAttributes.addFlashAttribute("message",
                         "You failed to publish " + name + " => " + e.getMessage());
             }
