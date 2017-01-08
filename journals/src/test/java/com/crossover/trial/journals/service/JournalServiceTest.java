@@ -1,4 +1,4 @@
-package com.crossover.trial.journals.rest;
+package com.crossover.trial.journals.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,9 +11,6 @@ import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.repository.PublisherRepository;
-import com.crossover.trial.journals.service.JournalService;
-import com.crossover.trial.journals.service.ServiceException;
-import com.crossover.trial.journals.service.UserService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

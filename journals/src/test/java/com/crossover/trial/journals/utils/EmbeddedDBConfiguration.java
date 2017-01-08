@@ -1,4 +1,4 @@
-package com.crossover.trial.journals.rest;
+package com.crossover.trial.journals.utils;
 
 import javax.sql.DataSource;
 import org.springframework.boot.test.context.TestConfiguration;
