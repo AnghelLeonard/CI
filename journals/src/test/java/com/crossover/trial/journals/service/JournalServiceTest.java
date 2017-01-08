@@ -11,6 +11,7 @@ import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.repository.PublisherRepository;
+import static com.crossover.trial.journals.utils.Utils.getUser;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,7 +72,6 @@ public class JournalServiceTest {
         journals.stream().forEach(j -> assertEquals(new Long(1), j.getPublisher().getId()));
 
     }
-
     
     @Test(expected = ServiceException.class)
     public void publishFail() throws ServiceException {
@@ -146,14 +146,5 @@ public class JournalServiceTest {
         assertEquals(1, journals.size());
         journals = journalService.listAll(getUser("user1"));
         assertEquals(1, journals.size());
-    }
-     
-    protected User getUser(String name) {
-        Optional<User> user = userService.getUserByLoginName(name);
-        if (!user.isPresent()) {
-            fail("user1 doesn't exist");
-        }
-        return user.get();
-    }
-
+    }       
 }
