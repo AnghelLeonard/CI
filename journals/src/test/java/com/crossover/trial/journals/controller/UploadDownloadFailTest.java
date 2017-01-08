@@ -24,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
  
 /**
  *
- * @author AnghelLeonard
+ * @author Anghel Leonard
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
