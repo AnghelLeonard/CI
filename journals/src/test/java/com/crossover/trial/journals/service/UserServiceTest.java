@@ -6,6 +6,7 @@ import static com.crossover.trial.journals.utils.Utils.getUser;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +24,13 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
-
+    
     @Test
     public void findByIdTest() {
         User user = userService.findById(1L);
         assertNotNull(user);
     }
-
+/*
     @Test
     public void subscribeUserToCategory() {
 
@@ -38,5 +39,15 @@ public class UserServiceTest {
 
         List<Subscription> subscribtions = user.getSubscriptions();
         assertEquals(2, subscribtions.size());
+    }
+  */  
+    @Test 
+    public void nullSubscriptions(){     
+        User user = getUser("user1");
+        user.setSubscriptions(null);
+        userService.subscribe(user, 1L);
+
+        List<Subscription> subscribtions = user.getSubscriptions();
+        assertNull(subscribtions);
     }
 }
