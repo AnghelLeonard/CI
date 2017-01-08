@@ -33,10 +33,10 @@ public class UserServiceTest {
     @Test
     public void subscribeUserToCategory() {
 
-        User user = getUser("user2");
+        User user = getUser("user1");
         userService.subscribe(user, 1L);
 
         List<Subscription> subscribtions = user.getSubscriptions();
-        assertEquals(1, subscribtions.size());
+        assertEquals(2, subscribtions.size());
     }
 }
