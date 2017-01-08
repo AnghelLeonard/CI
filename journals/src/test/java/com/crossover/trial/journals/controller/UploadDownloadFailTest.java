@@ -1,6 +1,5 @@
 package com.crossover.trial.journals.controller;
 
-import com.crossover.trial.journals.Application;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -22,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import org.springframework.web.context.WebApplicationContext;
-
+ 
 /**
  *
  * @author Anghel Leonard
