@@ -46,7 +46,7 @@ public class JournalController {
         User user = userRepository.findOne(activeUser.getUser().getId());
         List<Subscription> subscriptions = user.getSubscriptions();
         Optional<Subscription> subscription = subscriptions.stream()
-                .filter(s -> s.getCategory().getId().equals(category.getId())).findFirst();        
+                .filter(s -> s.getCategory().getId().equals(category.getId())).findFirst();
         if (subscription.isPresent() || journal.getPublisher().getId().equals(user.getId())) {
             File file = new File(PublisherController.getFileName(journal.getPublisher().getId(), journal.getUuid()));
             InputStream in = new FileInputStream(file);

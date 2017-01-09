@@ -55,7 +55,7 @@ public class UserServiceTest {
 
     @Test(expected = ServiceException.class)
     public void nullCategory() {
-        User user = getUser("user1");        
-        userService.subscribe(user, 999L);        
+        User user = getUser("user1");
+        userService.subscribe(user, 999L);
     }
 }

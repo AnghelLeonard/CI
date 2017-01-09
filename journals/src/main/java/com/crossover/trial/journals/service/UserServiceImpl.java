@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserByLoginName(String loginName) {        
+    public Optional<User> getUserByLoginName(String loginName) {
         return Optional.ofNullable(userRepository.findByLoginName(loginName));
     }
 
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         List<Subscription> subscriptions;
         subscriptions = user.getSubscriptions();
         if (subscriptions == null) {
-            subscriptions = new ArrayList<>();            
+            subscriptions = new ArrayList<>();
         }
         Optional<Subscription> subscr = subscriptions.stream()
                 .filter(s -> s.getCategory().getId().equals(categoryId)).findFirst();

@@ -17,15 +17,15 @@ public final class Utils {
 
     @Autowired
     private UserService us;
-    
-    private static UserService userService;       
+
+    private static UserService userService;
 
     private Utils() {
         // NOPE
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         userService = this.us;
     }
 

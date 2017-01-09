@@ -41,7 +41,7 @@ public class UploadDownloadSuccessTest {
     public void setup() {
         this.mockMvc = webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
     }
-    
+
     @Test
     @WithUserDetails("publisher1")
     public void aTestUpload() throws Exception {
@@ -60,8 +60,8 @@ public class UploadDownloadSuccessTest {
     public void bTestDownload() throws Exception {
         int bytes = "DATADATADATDATADATA".getBytes().length;
         MvcResult andReturn = this.mockMvc.perform(get("/view/4")).andExpect(status().isOk()).andReturn();
-        
-        assertEquals(bytes, andReturn.getResponse().getContentAsByteArray().length);       
-        assertEquals("DATADATADATDATADATA", andReturn.getResponse().getContentAsString());   
+
+        assertEquals(bytes, andReturn.getResponse().getContentAsByteArray().length);
+        assertEquals("DATADATADATDATADATA", andReturn.getResponse().getContentAsString());
     }
 }

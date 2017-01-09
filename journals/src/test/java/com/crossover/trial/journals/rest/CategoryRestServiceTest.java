@@ -27,32 +27,32 @@ import org.junit.Test;
 @WebAppConfiguration
 public class CategoryRestServiceTest {
 
-	private MockMvc mockMvc;
+    private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
-	@Before
-	public void setup() throws Exception {
-		this.mockMvc = webAppContextSetup(webApplicationContext).build();
-	}
+    @Before
+    public void setup() throws Exception {
+        this.mockMvc = webAppContextSetup(webApplicationContext).build();
+    }
 
-	private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
-	@Test
-	public void getCategories() throws Exception {
-		mockMvc.perform(get("/public/rest/category")).andExpect(status().isOk())
-				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$[0].id", is(1)))
-				.andExpect(jsonPath("$[0].name", is("immunology")))
-				.andExpect(jsonPath("$[1].id", is(2)))
-				.andExpect(jsonPath("$[1].name", is("pathology")))
-				.andExpect(jsonPath("$[2].id", is(3)))
-				.andExpect(jsonPath("$[2].name", is("endocrinology")))
-				.andExpect(jsonPath("$[3].id", is(4)))
-				.andExpect(jsonPath("$[3].name", is("microbiology")))
-				.andExpect(jsonPath("$[4].id", is(5)))
-				.andExpect(jsonPath("$[4].name", is("neurology")));
-	}
+    @Test
+    public void getCategories() throws Exception {
+        mockMvc.perform(get("/public/rest/category")).andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].name", is("immunology")))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].name", is("pathology")))
+                .andExpect(jsonPath("$[2].id", is(3)))
+                .andExpect(jsonPath("$[2].name", is("endocrinology")))
+                .andExpect(jsonPath("$[3].id", is(4)))
+                .andExpect(jsonPath("$[3].name", is("microbiology")))
+                .andExpect(jsonPath("$[4].id", is(5)))
+                .andExpect(jsonPath("$[4].name", is("neurology")));
+    }
 }

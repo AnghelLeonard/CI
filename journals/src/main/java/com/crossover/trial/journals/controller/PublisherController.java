@@ -27,6 +27,7 @@ import com.crossover.trial.journals.Application;
 import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.repository.PublisherRepository;
 import com.crossover.trial.journals.service.CurrentUser;
+import com.crossover.trial.journals.service.SignalSenderService;
 
 @Controller
 public class PublisherController {
@@ -39,8 +40,11 @@ public class PublisherController {
     @Autowired
     private JournalService journalService;
 
+    @Autowired
+    private SignalSenderService signalService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/publisher/publish")
-    public String provideUploadInfo(Model model) {       
+    public String provideUploadInfo(Model model) {
         return "publisher/publish";
     }
 
@@ -66,12 +70,13 @@ public class PublisherController {
                 journal.setUuid(uuid);
                 journal.setName(name);
                 journalService.publish(publisher.get(), journal, categoryId);
+                signalService.sendSignal(categoryId);
                 return "redirect:/publisher/browse";
-            } catch (Exception e) {               
+            } catch (Exception e) {
                 redirectAttributes.addFlashAttribute("message",
                         "You failed to publish " + name + " => " + e.getMessage());
             }
-        } else {            
+        } else {
             redirectAttributes.addFlashAttribute("message",
                     "You failed to upload " + name + " because the file was empty");
         }

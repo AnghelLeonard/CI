@@ -31,6 +31,9 @@ public class User {
     @Column(nullable = false)
     private String pwd;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Column(nullable = false)
     private Boolean enabled;
 
@@ -41,6 +44,14 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)
     private List<Subscription> subscriptions;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getLoginName() {
         return loginName;

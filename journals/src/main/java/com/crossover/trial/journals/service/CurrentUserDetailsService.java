@@ -15,7 +15,7 @@ public class CurrentUserDetailsService implements UserDetailsService {
     @Autowired
     public CurrentUserDetailsService(UserService userService) {
         this.userService = userService;
-    }    
+    }
 
     @Override
     public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {

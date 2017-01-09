@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import org.springframework.web.context.WebApplicationContext;
- 
+
 /**
  *
  * @author Anghel Leonard
@@ -32,14 +32,14 @@ import org.springframework.web.context.WebApplicationContext;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UploadDownloadFailTest {
 
-    private MockMvc mockMvc;   
-    
+    private MockMvc mockMvc;
+
     @Autowired
     private WebApplicationContext webApplicationContext;
 
     @Before
     public void setup() {
-        this.mockMvc = webAppContextSetup(webApplicationContext).apply(springSecurity()).build();      
+        this.mockMvc = webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
     }
 
     @Test
@@ -54,11 +54,11 @@ public class UploadDownloadFailTest {
                 .param("category", "1"))
                 .andExpect(MockMvcResultMatchers.flash().attribute("message", "You failed to upload JournalTest because the file was empty"));
     }
-    
+
     @Test
     @WithUserDetails(value = "user1")
     public void bTestDownload() throws Exception {
-             
+
         MvcResult andReturn = this.mockMvc.perform(get("/view/3")).andExpect(status().is4xxClientError()).andReturn();
 
         assertEquals(0, andReturn.getResponse().getContentLength());

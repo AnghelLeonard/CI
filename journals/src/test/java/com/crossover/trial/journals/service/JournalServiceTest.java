@@ -30,10 +30,7 @@ public class JournalServiceTest {
     private final static String NEW_JOURNAL_NAME = "New Journal";
 
     @Autowired
-    private JournalService journalService;
-
-    @Autowired
-    private UserService userService;
+    private JournalService journalService;   
 
     @Autowired
     private PublisherRepository publisherRepository;
@@ -49,13 +46,13 @@ public class JournalServiceTest {
         assertEquals(new Long(1), journals.get(0).getPublisher().getId());
         assertNotNull(journals.get(0).getPublishDate());
     }
-    
+
     @Test
     public void browseUnSubscribedUser() {
         List<Journal> journals = journalService.listAll(getUser("user2"));
         assertEquals(0, journals.size());
     }
-    
+
     @Test
     public void listPublisher() {
         User user = getUser("publisher1");
@@ -72,7 +69,7 @@ public class JournalServiceTest {
         journals.stream().forEach(j -> assertEquals(new Long(1), j.getPublisher().getId()));
 
     }
-    
+
     @Test(expected = ServiceException.class)
     public void publishFail() throws ServiceException {
         User user = getUser("publisher2");
@@ -95,7 +92,7 @@ public class JournalServiceTest {
         journalService.publish(p.get(), journal, 150L);
     }
 
-    @Test()
+    @Test
     public void publishSuccess() {
         User user = getUser("publisher2");
         Optional<Publisher> p = publisherRepository.findByUser(user);
@@ -146,5 +143,5 @@ public class JournalServiceTest {
         assertEquals(1, journals.size());
         journals = journalService.listAll(getUser("user1"));
         assertEquals(1, journals.size());
-    }       
+    }
 }
