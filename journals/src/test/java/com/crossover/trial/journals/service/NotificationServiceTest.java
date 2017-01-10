@@ -34,7 +34,7 @@ public class NotificationServiceTest {
         wiser = new Wiser();
         wiser.setHostname("localhost");
         wiser.setPort(25);
-        wiser.start();
+        wiser.start();        
     }
 
     @After
