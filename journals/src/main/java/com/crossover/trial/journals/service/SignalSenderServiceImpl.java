@@ -19,7 +19,7 @@ public class SignalSenderServiceImpl implements SignalSenderService {
     }
 
     @Override
-    public void sendSignal(Long categoryId) {              
+    public void sendSignal(Long categoryId) {
         jmsTemplate.convertAndSend("mailbox", categoryId);
     }
 

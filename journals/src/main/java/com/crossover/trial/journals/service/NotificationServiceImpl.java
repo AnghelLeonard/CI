@@ -17,7 +17,7 @@ import org.thymeleaf.context.Context;
  */
 @Component
 public class NotificationServiceImpl implements NotificationService {
- 
+
     @Autowired
     private JavaMailSender javaMailSender;
 

@@ -30,7 +30,7 @@ public class JournalServiceTest {
     private final static String NEW_JOURNAL_NAME = "New Journal";
 
     @Autowired
-    private JournalService journalService;   
+    private JournalService journalService;
 
     @Autowired
     private PublisherRepository publisherRepository;
